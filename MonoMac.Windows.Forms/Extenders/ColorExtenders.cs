@@ -13,23 +13,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.using System;
 using System.Drawing;
-using AppKit;
+using MonoMac.AppKit; // using AppKit;
+
 namespace System.Windows.Forms
 {
-	public static class ColorExtenders
-	{
-		public static Color ToColor (this NSColor clr)
-		{
-			if (clr == null)
-				return Color.Transparent;
-			clr = clr.UsingColorSpace (NSColorSpace.CalibratedRGB);
-			return Color.FromArgb ((int)clr.AlphaComponent, (int)clr.RedComponent, (int)clr.GreenComponent, (int)clr.BlueComponent);
-		}
-		public static NSColor ToNSColor (this Color clr)
-		{
-			return NSColor.FromCalibratedRgba (clr.R, clr.G, clr.B, clr.A).UsingColorSpace (NSColorSpace.CalibratedRGB);
-		}
-	}
+    public static class ColorExtenders
+    {
+        public static Color ToColor(this NSColor clr)
+        {
+            if (clr == null)
+                return Color.Transparent;
+            clr = clr.UsingColorSpace(NSColorSpace.CalibratedRGB);
+            return Color.FromArgb((int)clr.AlphaComponent, (int)clr.RedComponent, (int)clr.GreenComponent, (int)clr.BlueComponent);
+        }
+        public static NSColor ToNSColor(this Color clr)
+        {
+            return NSColor.FromCalibratedRgba(clr.R, clr.G, clr.B, clr.A).UsingColorSpace(NSColorSpace.CalibratedRGB);
+        }
+    }
 }
 
 

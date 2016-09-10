@@ -14,21 +14,30 @@
 //    limitations under the License.using System;
 using System.Collections;
 using System.Linq;
-using AppKit;
+using MonoMac.AppKit; // using AppKit;
 using System.Drawing;
-using Foundation;
+using MonoMac.Foundation; // using Foundation;
+
 namespace System.Windows.Forms
 {
-	internal partial class InternalUserControl : UserControlMouseView , IControl
-	{		
-		public string Text {get;set;}
-		
-		public override bool IsFlipped {
-			get {
-				return true;
-			}
-		}
+    // ankr TODO
+    internal abstract class UserControlMouseView : UserControl
+    {
+        public abstract bool IsFlipped { get; }
+    }
 
-	}
+    internal partial class InternalUserControl : UserControlMouseView, IControl
+    {
+        public new string Text { get; set; }
+
+        public override bool IsFlipped
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+    }
 }
 

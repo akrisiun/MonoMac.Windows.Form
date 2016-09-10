@@ -26,14 +26,16 @@
 
 // COMPLETE
 
-namespace System.Windows.Forms {
-	public interface IContainerControl {
-		#region Public Instance Properties
-		Control ActiveControl {get; set;}
-		#endregion	// Public Instance Properties
+namespace System.Windows.Forms
+{
+    public interface IContainerControl
+    {
+        #region Public Instance Properties
+        Control ActiveControl { get; set; }
+        #endregion	// Public Instance Properties
 
-		#region Public Instance Methods
-		bool ActivateControl(Control active);
-		#endregion	// Public Instance Methods
-	}
+        #region Public Instance Methods
+        bool ActivateControl(Control active);
+        #endregion	// Public Instance Methods
+    }
 }

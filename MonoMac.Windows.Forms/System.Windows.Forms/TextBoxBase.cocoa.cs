@@ -18,8 +18,8 @@ using System.Drawing.Text;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Collections;
-using AppKit;
-using Foundation;
+using MonoMac.AppKit; // using AppKit;
+using MonoMac.Foundation; // using Foundation;
 using System.ComponentModel;
 
 namespace System.Windows.Forms

@@ -13,8 +13,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 using System;
-using AppKit;
+using MonoMac.AppKit; // using AppKit;
+using MonoMac.Foundation;
 using System.Threading;
+
 namespace System.Windows.Forms
 {
 	internal class FileDialogHelper : NSOpenPanel, IViewHelper
@@ -27,7 +29,7 @@ namespace System.Windows.Forms
 			this.CanChooseFiles = true;
 			this.CanChooseDirectories = false;
 		}
-		public override void Cancel (Foundation.NSObject sender)
+		public override void Cancel (MonoMac.Foundation.NSObject sender)
 		{
 			if(CancelEvent != null)
 				CancelEvent(this,null);

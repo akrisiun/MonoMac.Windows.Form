@@ -1,8 +1,9 @@
 using System;
 using System.Threading;
 using System.ComponentModel;
-using AppKit;
-using Foundation;
+using MonoMac.AppKit; // using AppKit;
+using MonoMac.Foundation; // using using Foundation;
+
 namespace System.Windows.Forms
 {
 	public partial class Timer
@@ -11,7 +12,8 @@ namespace System.Windows.Forms
 
 		public Timer ()
 		{
-			m_helper = new NSTimer();
+            // TODO : ankr
+			m_helper = new NSTimer(default(NSObjectFlag));
 			enabled = false;
 		}
 		

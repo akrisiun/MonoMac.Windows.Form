@@ -9,8 +9,9 @@
 // ------------------------------------------------------------------------------
 
 namespace MonomacTestConversion {
-	
-	
+
+    using Foundation = MonoMac.Foundation;
+
 	// Should subclass MonoMac.AppKit.NSWindow
 	[Foundation.Register("MainWindow")]
 	public partial class MainWindow {

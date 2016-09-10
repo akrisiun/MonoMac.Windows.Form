@@ -12,54 +12,67 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.using System;
-using AppKit;
+
+using MonoMac.AppKit; // using AppKit;
 using System.Drawing;
+
 namespace System.Windows.Forms
 {
-	internal partial class TableViewHelper : NSTableView, IViewHelper,  ITableViewHelper
-	{
-        public Color BackColor {get;set;}
-		protected virtual void OnPaintBackground(PaintEventArgs e)
-		{
-			if(BackColor == null)
-				BackColor = Color.Transparent;
-			if(BackColor == Color.Transparent)
-				return;
-			Pen pen = new Pen(BackColor);
-			e.Graphics.DrawRectangle(pen,e.ClipRectangle);
-		}
-	
-	
-		
-		public override void DrawRow (int row, Drawing.RectangleF clipRect)
-		{
-			bool shouldDraw = true;
-			using (var graphics = Graphics.FromHwnd (this.Handle))
-			{	
-				
-				var events = new DrawItemEventArgs( graphics,this.Font.ToFont(), Rectangle.Round (clipRect),row,getState(row));
-				if(Host is ListBox)
-					((ListBox)Host).DrawItemInternal (events);				
-				shouldDraw = !events.Handled;
-			}
-			if (shouldDraw)
-				base.DrawRow (row, clipRect);
-		}
-		
-		private DrawItemState getState(int row)
-		{
-			DrawItemState state = DrawItemState.None;
-			if(Host is ListBox)
-			{
-				var lbox = (ListBox)Host;
-				if (lbox.SelectedIndices.Contains (row))
-					state |= DrawItemState.Selected;
-					
-				if (lbox.has_focus && lbox.FocusedItem == row)
-					state |= DrawItemState.Focus;
-			}
-			return state;
-		}
-	}
+    internal partial class TableViewHelper : NSTableView, IViewHelper, ITableViewHelper
+    {
+        // ankr:
+        public Control Host { get; set; }
+        // public RectangleF Frame { get; internal set; }
+
+        public NSCursor Cursor { get; set; }
+
+        public Color BackColor { get; set; }
+        protected virtual void OnPaintBackground(PaintEventArgs e)
+        {
+            if (BackColor == null)
+                BackColor = Color.Transparent;
+            if (BackColor == Color.Transparent)
+                return;
+            Pen pen = new Pen(BackColor);
+            e.Graphics.DrawRectangle(pen, e.ClipRectangle);
+        }
+
+
+
+        public override void DrawRow(int row, Drawing.RectangleF clipRect)
+        {
+            bool shouldDraw = true;
+            using (var graphics = Graphics.FromHwnd(this.Handle))
+            {
+
+                var events = new DrawItemEventArgs(graphics, this.Font.ToFont(), Rectangle.Round(clipRect), row, getState(row));
+                if (Host is ListBox)
+                    ((ListBox)Host).DrawItemInternal(events);
+                shouldDraw = !events.Handled;
+            }
+            if (shouldDraw)
+                base.DrawRow(row, clipRect);
+        }
+
+        private DrawItemState getState(int row)
+        {
+            DrawItemState state = DrawItemState.None;
+            if (Host is ListBox)
+            {
+                var lbox = (ListBox)Host;
+                if (lbox.SelectedIndices.Contains(row))
+                    state |= DrawItemState.Selected;
+
+                if (lbox.has_focus && lbox.FocusedItem == row)
+                    state |= DrawItemState.Focus;
+            }
+            return state;
+        }
+
+
+        //Control IViewHelper.Host 
+
+        public virtual void FontChanged() { }
+    }
 }
 

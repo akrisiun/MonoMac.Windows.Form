@@ -12,11 +12,12 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.using System;
-using AppKit;
-using ObjCRuntime;
+using MonoMac.AppKit; // using AppKit;
+using MonoMac.ObjCRuntime;
+
 namespace System.Windows.Forms
 {
-	internal class ContextMenuHelper : NSMenu
+    internal class ContextMenuHelper : NSMenu // ankr:, IViewHelper
 	{
 		public ContextMenuHelper (ContextMenu host) : base ()
 		{

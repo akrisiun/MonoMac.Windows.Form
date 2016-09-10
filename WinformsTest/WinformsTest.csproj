@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -6,11 +6,12 @@
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B5C06836-E132-4DEE-A59E-E3DD17E770E3}</ProjectGuid>
-    <ProjectTypeGuids>{948B3504-5B70-4649-8FE4-BDE1FB46EC69};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>WinformsTest</RootNamespace>
     <AssemblyName>WinformsTest</AssemblyName>
     <StartupObject>WinFormsTests.Program</StartupObject>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,23 +21,21 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <ConsolePause>true</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MonoMac">
+      <HintPath>..\lib\MonoMac.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Windows.Forms">
+      <HintPath>..\lib\System.Windows.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
-    <Reference Include="MonoMac" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -47,15 +46,25 @@
       <DependentUpon>MainMenu.xib</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="TesterForm.cs" />
+    <Compile Include="TesterForm.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="TesterForm.Designer.cs" />
-    <Compile Include="python\ExceptionForm.cs" />
+    <Compile Include="python\ExceptionForm.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="python\ExceptionForm.Designer.cs" />
-    <Compile Include="python\FileNewForm.cs" />
+    <Compile Include="python\FileNewForm.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="python\FileNewForm.Designer.cs" />
-    <Compile Include="python\FindForm.cs" />
+    <Compile Include="python\FindForm.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="python\FindForm.Designer.cs" />
-    <Compile Include="python\OptionsForm.cs" />
+    <Compile Include="python\OptionsForm.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="python\OptionsForm.Designer.cs" />
     <Compile Include="python\Model\Documents.cs" />
     <Compile Include="python\Model\ScriptDocument.cs" />
@@ -67,6 +76,7 @@
     <InterfaceDefinition Include="MainMenu.xib" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Info.plist" />
     <None Include="README" />
     <None Include="python\ExceptionForm.resx" />
@@ -78,6 +88,7 @@
     <None Include="TesterForm.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!--
   <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />
   <ItemGroup>
     <ProjectReference Include="..\MonoMac.Windows.Forms\System.Windows.Forms.csproj">
@@ -85,6 +96,7 @@
       <Name>System.Windows.Forms</Name>
     </ProjectReference>
   </ItemGroup>
+  -->
   <ItemGroup>
     <EmbeddedResource Include="TesterForm.resources" />
   </ItemGroup>

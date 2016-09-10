@@ -12,9 +12,12 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.using System;
-using AppKit;
+using MonoMac.AppKit; // using AppKit;
 using System.Drawing;
-using Foundation;
+
+// using MonoMac.Foundation; // using Foundation;
+using Foundation = MonoMac.Foundation;
+
 namespace System.Windows.Forms
 {
 	[Foundation.Register("TextBox")]

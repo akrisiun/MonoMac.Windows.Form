@@ -13,7 +13,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.using System;
 using System.Drawing;
-using AppKit;
+using MonoMac.AppKit; // using AppKit;
 namespace System.Windows.Forms
 {
 	internal sealed class UpDownSpinner : Control
@@ -39,6 +39,7 @@ namespace System.Windows.Forms
 			m_helper.MaxValue = 1;
 			m_helper.IntValue = 0;
 			m_helper.Increment = 1;			
+
 			m_helper.Activated += delegate(object sender, EventArgs e) {
 				if(m_helper.IntValue == 1)
 					owner.UpButton();
